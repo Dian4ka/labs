@@ -1,43 +1,80 @@
 <template>
-    <div class="wrapper">
-        <div class="filter-panel">
-            <button @click="filterByGender('Male')">Male</button>
-            <button @click="filterByGender('Female')">Female</button>
-        </div>
-        <div class="user-cards">
-            <div v-if="filteredUsers.length === 0">Дані відсутні</div>
-            <div class="user-card" v-for="user in filteredUsers" :key="user.firstName" :class="ageColorClass(user.age)">
-                <div class="user-card-header">
-                    <img class="user-card-banner" :src="bannerSrc">
-                    <img class="user-card-photo" :src="user.photoSrc">
-                </div>
-                <div class="user-card-content">
-                    <div class="user-card-content-credentials">
-                        <span class="user-card-content-first-name">{{ user.firstName }}</span>
-                        <span class="user-card-content-last-name">{{ user.lastName }}</span>
-                    </div>
-                    <div class="user-card-content-additional-info">
-                        <div class="user-card-content-field">
-                            <div class="user-card-content-field-value">{{ user.age }}</div>
-                            <div class="user-card-content-field-label">Вік</div>
-                        </div>
-                        <div class="user-card-content-field">
-                            <div class="user-card-content-field-value">{{ user.gender }}</div>
-                            <div class="user-card-content-field-label">Стать</div>
-                        </div>
-                        <div class="user-card-content-field">
-                            <div class="user-card-content-field-value">{{ user.position }}</div>
-                            <div class="user-card-content-field-label">Позиція</div>
-                        </div>
-                    </div>
-                    <div class="user-card-content-hobbies">
-                        <div class="user-card-content-hobbies-header">Хобі</div>
-                        <div class="user-card-content-hobbies-hobby" v-for="hobby in user.hobbies" :key="hobby">{{ '⭐️ ' + hobby + ' ⭐️' }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="wrapper">
+    <div class="filter-panel">
+      <button @click="filterByGender('Male')">
+        Male
+      </button>
+      <button @click="filterByGender('Female')">
+        Female
+      </button>
     </div>
+    <div class="user-cards">
+      <div v-if="filteredUsers.length === 0">
+        Дані відсутні
+      </div>
+      <div
+        v-for="user in filteredUsers"
+        :key="user.firstName"
+        class="user-card"
+        :class="ageColorClass(user.age)"
+      >
+        <div class="user-card-header">
+          <img
+            class="user-card-banner"
+            :src="bannerSrc"
+          >
+          <img
+            class="user-card-photo"
+            :src="user.photoSrc"
+          >
+        </div>
+        <div class="user-card-content">
+          <div class="user-card-content-credentials">
+            <span class="user-card-content-first-name">{{ user.firstName }}</span>
+            <span class="user-card-content-last-name">{{ user.lastName }}</span>
+          </div>
+          <div class="user-card-content-additional-info">
+            <div class="user-card-content-field">
+              <div class="user-card-content-field-value">
+                {{ user.age }}
+              </div>
+              <div class="user-card-content-field-label">
+                Вік
+              </div>
+            </div>
+            <div class="user-card-content-field">
+              <div class="user-card-content-field-value">
+                {{ user.gender }}
+              </div>
+              <div class="user-card-content-field-label">
+                Стать
+              </div>
+            </div>
+            <div class="user-card-content-field">
+              <div class="user-card-content-field-value">
+                {{ user.position }}
+              </div>
+              <div class="user-card-content-field-label">
+                Позиція
+              </div>
+            </div>
+          </div>
+          <div class="user-card-content-hobbies">
+            <div class="user-card-content-hobbies-header">
+              Хобі
+            </div>
+            <div
+              v-for="hobby in user.hobbies"
+              :key="hobby"
+              class="user-card-content-hobbies-hobby"
+            >
+              {{ '⭐️ ' + hobby + ' ⭐️' }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script setup>
 import { ref, computed } from 'vue'
